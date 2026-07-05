@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多行列表项响应式布局</title>
+    <style></style>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      :root {
+        --ml-width: 1400px;
+        --grid-item-width: 200px;
+        --grid-gap: 15px;
+      }
+      .ml-grid-list {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(var(--grid-item-width), 1fr)
+        );
+        gap: var(--grid-gap);
+      }
+      .ml-grid-item {
+        background: #ccc;
+        height: 200px;
+        border-radius: 10px;
+      }
+      .ml-fixed-grid-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, var(--grid-item-width));
+        justify-content: space-between;
+        gap: var(--grid-gap);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="ml-sticky-header bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="ml-x-center p10">
+          <h1 class="page-tt">多行列表项响应式布局</h1>
+          <p class="des">
+            使用 grid 布局，涉及到 `repeat` 函数的使用，请参考
+            <a href="https://www.yuque.com/ycxu/css-layout/grids-deep#f748ead0"
+              >Grids 之登堂入室的 repeat 部分</a
+            >
+          </p>
+          <h3 class="guide-tt">1、间距固定</h3>
+          <p class="des">
+            容器（主体内容）最大宽度为1400px，间距固定，列表项有个最小宽度，尽可能多的生成列表项，剩余容器宽度均分给列表项。Demo
+            如下（可改变宽度查看效果）：
+          </p>
+          <div class="ml-grid-list">
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+          </div>
+
+          <p class="des">CSS 代码示意如下：</p>
+
+          <pre>
+:root {
+  --grid-item-width: 200px;
+  --grid-gap: 15px;
+}
+
+/* 
+* 使用最小列宽度循环生成尽可能多的列，剩余不够一列的宽度均分给各列
+*/
+.ml-grid-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--grid-item-width), 1fr)
+  );
+  gap: var(--grid-gap);
+}
+          </pre>
+
+          <h3 class="guide-tt">2、列表项宽度固定</h3>
+          <p class="des">
+            容器（主体内容）最大宽度为1400px，列表项固定宽度，尽可能多的生成列表项，剩余容器宽度均分给间距。Demo
+            如下：
+          </p>
+          <div class="ml-fixed-grid-list">
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+            <div class="ml-grid-item"></div>
+          </div>
+          <p class="des">CSS 代码示意如下：</p>
+
+          <pre>
+:root {
+  --grid-item-width: 200px;
+  --grid-gap: 15px;
+}
+
+/* 
+* 使用固定列宽度循环生成尽可能多的列
+* 设置水平分布为 space-between
+*/
+.ml-fixed-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--grid-item-width));
+  justify-content: space-between;
+  gap: var(--grid-gap);
+}
+          </pre>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

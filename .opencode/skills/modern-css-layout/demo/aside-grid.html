@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid aside layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      .main {
+        margin-left: 20px;
+      }
+      .aside {
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <div class="container">
+        <div class="ml-x-center ml-main-with-aside-left p10">
+          <aside class="aside bg-color-gray">
+            <div class="text-placeholder" style="width: 80%"></div>
+            <div class="text-placeholder" style="width: 70%"></div>
+            <div class="text-placeholder" style="width: 60%"></div>
+            <div class="text-placeholder" style="width: 75%"></div>
+          </aside>
+          <main class="main">
+            <h1 class="title">左/右边栏布局 grid 实现</h1>
+            <h3 class="guide-tt">HTML 代码示意如下：</h3>
+            <p class="des">左边栏布局</p>
+            <pre>
+.ml-x-center.ml-main-with-aside-left>aside.aside-left+main.main
+            </pre>
+            <p class="des">右边栏布局</p>
+            <pre>
+.ml-x-center.ml-main-with-aside-right>main.main+aside.aside-right
+            </pre>
+
+            <p class="des">左右边栏布局</p>
+            <pre>
+.ml-x-center.ml-main-with-aside-both>aside.aside-left+main.main+aside.aside-right
+            </pre>
+            <h3 class="guide-tt">CSS 代码示意如下：</h3>
+            <pre>
+:root {
+  --ml-width: var(--reset-ml-width, 1200px);
+  --ml-aside-left-width: var(
+    --reset-ml-side-left-width,
+    300px
+  ); /* 左边栏宽度 */
+  --ml-aside-right-width: var(
+    --reset-ml-aside-right-width,
+    300px
+  ); /* 右边栏宽度 */
+}
+
+.ml-x-center {
+  max-width: var(--ml-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 
+* 左边栏布局
+* 内容宽度为除掉边栏宽度后的剩余容器宽度
+*/
+.ml-main-with-aside-left {
+  display: grid;
+  grid-template-columns: var(--aside-left-width) 1fr;
+}
+
+/* 
+* 右边栏布局
+* 内容宽度为除掉边栏宽度后的剩余容器宽度
+*/
+.ml-main-with-aside-right {
+  display: grid;
+  grid-template-columns: 1fr var(--aside-right-width);
+}
+
+/* 
+* 左右边栏布局
+* 内容宽度为除掉边栏宽度后的剩余容器宽度
+*/
+.ml-main-with-aside-both {
+  display: grid;
+  grid-template-columns: var(--aside-left-width) 1fr var(--aside-left-width);
+}
+            </pre>
+          </main>
+        </div>
+      </div>
+      <footer class="footer bg-color-black">
+        <div class="ml-x-center p10">
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

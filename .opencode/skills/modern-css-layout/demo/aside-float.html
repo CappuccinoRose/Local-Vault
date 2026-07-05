@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float aside layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      .aside {
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .ml-float-wrap {
+        min-height: calc(100vh - var(--ml-header-height) - 80px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <div class="container">
+        <div class="ml-x-center ml-float-wrap clearfix p10">
+          <main class="ml-float-main">
+            <div class="ml-float-main-inner p10">
+              <h1 class="title">左/右边栏布局 float 实现</h1>
+              <h3 class="guide-tt">HTML 代码示意如下：</h3>
+
+              <pre>
+.ml-float-wrap
+  main.ml-float-main>.ml-float-main-inner
+  aside.ml-float-aside-left
+  asideml-float-aside-right
+              </pre>
+              <h3 class="guide-tt">CSS 代码示意如下：</h3>
+              <pre>
+:root {
+  --ml-aside-left-width: var(
+    --reset-ml-side-left-width,
+    300px
+  ); /* 左边栏宽度 */
+  --ml-aside-right-width: var(
+    --reset-ml-aside-right-width,
+    300px
+  ); /* 右边栏宽度 */
+}
+/*
+* 左右边栏布局
+* float 布局实现，使用负 margin
+* ----------------------------------------
+*/
+
+/* 清除子元素 main，aside 的浮动 */
+.ml-float-wrap::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* 设置 float */
+.ml-float-main,
+.ml-float-aside-left,
+.ml-float-aside-right {
+  float: left;
+}
+
+/*
+* 设置主体内容宽度为100% 
+* 空出左右边栏的宽度
+*/
+.ml-float-main {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: var(--ml-aside-left-width);
+  padding-right: var(--ml-aside-right-width);
+}
+
+/* 设置左边栏宽度，及使用负 margin 回到左边位置 */
+.ml-float-aside-left {
+  width: var(--ml-aside-left-width);
+  margin-left: -100%;
+}
+
+/* 设置右边栏宽度，及使用负 margin 回到右边栏位置 */
+.ml-float-aside-right {
+  width: var(--ml-aside-right-width);
+  margin-left: calc(0px - var(--ml-aside-right-width));
+}
+                
+              </pre>
+            </div>
+          </main>
+          <aside class="ml-float-aside-left aside bg-color-gray">
+            <div class="text-placeholder" style="width: 80%"></div>
+            <div class="text-placeholder" style="width: 70%"></div>
+            <div class="text-placeholder" style="width: 60%"></div>
+            <div class="text-placeholder" style="width: 75%"></div>
+          </aside>
+          <aside class="ml-float-aside-right aside bg-color-gray">
+            <div class="text-placeholder" style="width: 80%"></div>
+            <div class="text-placeholder" style="width: 70%"></div>
+            <div class="text-placeholder" style="width: 60%"></div>
+            <div class="text-placeholder" style="width: 75%"></div>
+          </aside>
+        </div>
+      </div>
+      <footer class="footer bg-color-black">
+        <div class="ml-x-center p10">
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

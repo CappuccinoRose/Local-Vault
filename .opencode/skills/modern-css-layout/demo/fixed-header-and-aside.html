@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fixed header and aside layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+  </head>
+  <body>
+    <header class="ml-fixed-header justify-content p10 bg-color-black">
+      <div class="logo-placeholder"></div>
+      <div class="text-placeholder"></div>
+    </header>
+    <aside class="ml-fixed-aside p10 bg-color-black">
+      <div class="text-placeholder" style="width: 80%"></div>
+      <div class="text-placeholder" style="width: 70%"></div>
+      <div class="text-placeholder" style="width: 60%"></div>
+      <div class="text-placeholder" style="width: 75%"></div>
+    </aside>
+    <main class="ml-main-without-header-and-aside">
+      <div class="ml-main-inner">
+        <div class="p10">
+          <h1 class="page-tt">固定头部及边栏布局</h1>
+          <h3 class="guide-tt">HTML 结构如下：</h3>
+          <pre>
+  header.ml-fixed-header
+  
+  aside.ml-fixed-aside
+  
+  div.ml-main-without-header-and-aside>div.ml-main-inner
+          </pre>
+          <h3 class="guide-tt">CSS 代码如下：</h3>
+          <pre>
+:root {
+  --ml-min-width: 1200px; /* 最小宽度 */
+  --ml-header-height: 60px; /* header 高度 */
+  --ml-header-z-index: 5000; /* header z-index */
+  --ml-aside-left-width: 300px; /* 边栏宽度 */
+}
+.ml-fixed-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: var(--ml-header-height);
+  z-index: var(--ml-header-z-index);
+}
+/* 固定边栏 */
+.ml-fixed-aside {
+  position: fixed;
+  top: var(--ml-header-height);
+  bottom: 0;
+  left: 0;
+  width: var(--ml-aside-left-width);
+}            
+/*
+* 固定顶部和边栏布局
+* 设置 margin top 与 left ，空出顶部与边栏的位置
+* 设置高度，实现 main 区域的垂直滚动
+* 嵌套一层 main-inner，设置最小宽度，实现 main 区域的水平滚动
+*/
+.ml-main-without-header-and-aside {
+  margin-left: var(--ml-aside-left-width);
+  margin-top: var(--ml-header-height);
+  height: calc(100vh - var(--ml-header-height));
+  overflow: auto;
+}
+
+.ml-main-without-header-and-aside .ml-main-inner {
+  min-width: calc(var(--ml-min-width) - var(--ml-aside-left-width));
+}
+          </pre>
+          <h3 class="guide-tt">注意点：</h3>
+          <p class="des">
+            这块的局部滚动。
+            由于顶部和边栏均固定，所以当内容需要滚动的时候，就不再是默认的全局滚动条，而是
+            主体 main
+          </p>
+          <p class="des">
+            垂直滚动，可以通过设置main 的高度（calc(100vh -
+            var(--ml-header-height))）来实现；而水平滚动，则需要嵌套一层
+            main-inner，设置最小宽度（calc(var(--ml-min-width) -
+            var(--ml-aside-left-width))）来实现
+          </p>
+          <p class="des">
+            由于高度可以根据内容自动伸展，而宽度则是由父容器本身的宽度来决定的，所以为了实现
+            X 轴的滚动，需要嵌套一层。
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fixed header and aside layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+  </head>
+  <body>
+    <div class="ml-fixed-header-and-aside">
+      <header class="ml-header justify-content p10 bg-color-black">
+        <div class="logo-placeholder"></div>
+        <div class="text-placeholder"></div>
+      </header>
+      <aside class="p10 bg-color-black">
+        <div class="text-placeholder" style="width: 80%"></div>
+        <div class="text-placeholder" style="width: 70%"></div>
+        <div class="text-placeholder" style="width: 60%"></div>
+        <div class="text-placeholder" style="width: 75%"></div>
+      </aside>
+      <main class="ml-main">
+        <div class="ml-main-inner">
+          <div class="p10">
+            <h1 class="page-tt">固定头部及边栏布局 grid 实现</h1>
+            <h3 class="guide-tt">HTML 结构如下：</h3>
+            <pre>
+.ml-fixed-header-and-aside>header.ml-header+aside+main.ml-main>.ml-main-inner
+            </pre>
+            <h3 class="guide-tt">CSS 代码示意如下：</h3>
+            <pre>
+:root {
+  --ml-min-width: 1200px; /* 最小宽度 */
+  --ml-aside-left-width: 300px; /* 边栏宽度 */
+}
+.ml-fixed-header-and-aside {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: var(--ml-header-height) 1fr;
+  grid-template-columns: var(--ml-aside-left-width) 1fr;
+}
+
+/* header 占满行 */
+.ml-fixed-header-and-aside .ml-header {
+  grid-column: 1 / 3;
+}
+
+/* 实现主体内容 main Y 轴滚动 */
+.ml-fixed-header-and-aside .ml-main {
+  overflow: auto;
+}
+
+/* 实现主体内容 X 轴滚动 */
+.ml-fixed-header-and-aside .ml-main-inner {
+  min-width: calc(var(--ml-min-width) - var(--ml-aside-left-width));
+}
+            </pre>
+            <h3 class="guide-tt">注意点：</h3>
+            <p class="des">
+              这块的局部滚动。
+              由于顶部和边栏均固定，所以当内容需要滚动的时候，就不再是默认的全局滚动条，而是
+              主体 main
+            </p>
+            <p class="des">
+              由于高度可以根据内容自动伸展，而宽度则是由父容器本身的宽度来决定的，所以为了实现
+              X 轴的滚动，需要嵌套一层。
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

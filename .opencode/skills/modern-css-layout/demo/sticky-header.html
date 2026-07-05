@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sticky header layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="ml-sticky-header bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="ml-x-center p10">
+          <h1 class="page-tt">sticky 头部布局</h1>
+          <h3 class="guide-tt">HTML 结构如下：</h3>
+          <pre>
+header.ml-sticky-header
+          </pre>
+          <h3 class="guide-tt">CSS 代码如下：</h3>
+          <pre>
+:root {
+  --ml-header-height: var(--reset-ml-header-height, 60px);
+  --ml-header-z-index: var(--reset-ml-header-z-index, 5000);
+}
+.ml-sticky-header {
+  position: sticky;
+  top: 0;
+  height: var(--ml-header-height);
+  z-index: var(--ml-header-z-index);
+}
+        </pre
+          >
+          <h3 class="guide-tt">其他填充内容</h3>
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+          <div class="text-placeholder" style="width: 60%"></div>
+          <div class="text-placeholder" style="width: 75%"></div>
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+          <div class="text-placeholder" style="width: 60%"></div>
+          <div class="text-placeholder" style="width: 75%"></div>
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+          <div class="text-placeholder" style="width: 60%"></div>
+          <div class="text-placeholder" style="width: 75%"></div>
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+          <div class="text-placeholder" style="width: 60%"></div>
+          <div class="text-placeholder" style="width: 75%"></div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

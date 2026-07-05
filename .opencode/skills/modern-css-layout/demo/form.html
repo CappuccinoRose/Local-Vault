@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      .ml-form {
+        display: grid;
+        grid-template-columns: minmax(60px, max-content) 1fr;
+      }
+      .ml-form .ml-form-item {
+        display: contents;
+      }
+      .ml-form .ml-form-item .ml-form-label {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="ml-sticky-header bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="ml-x-center p10">
+          <form class="ml-form">
+            <div class="ml-form-item">
+              <label class="form-label">姓名</label>
+              <div class="form-field">
+                <input type="text" class="form-input" />
+              </div>
+            </div>
+            <div class="ml-form-item">
+              <label class="form-label">密码</label>
+              <div class="form-field">
+                <div class="form-element-wrap">
+                  <input type="text" class="form-input" />
+                </div>
+                <div class="form-des"></div>
+                <div class="form-check-msg"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

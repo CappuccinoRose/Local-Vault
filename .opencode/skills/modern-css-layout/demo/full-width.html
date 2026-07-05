@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>full width layout</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+  </head>
+  <body>
+    <div id="app" class="app-full-screen">
+      <header class="header bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <section class="feature bg-color-1">
+        <div class="ml-x-center p10">
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+          <div class="text-placeholder" style="width: 60%"></div>
+          <div class="text-placeholder" style="width: 75%"></div>
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+          <div class="text-placeholder" style="width: 60%"></div>
+          <div class="text-placeholder" style="width: 75%"></div>
+        </div>
+      </section>
+      <main class="main">
+        <div class="ml-x-center p10">
+          <h1 class="page-tt">背景水平铺满，内容水平居中布局</h1>
+          <h3 class="guide-tt">HTML 结构示意如下：</h3>
+          <pre>xxx>div.ml-x-center</pre>
+          <p class="des">
+            xxx 表示 ml-x-center 的外层包裹，用来承载全屏的背景设计，ml-x-center
+            用来实现内容水平居中。如.header>.ml-x-center, .banner>.ml-x-center
+          </p>
+          <h3 class="guide-tt">CSS 代码示意如下：</h3>
+          <pre>
+:root {
+  --ml-width: var(--reset-ml-width, 1200px); /* 固定宽度与最大宽度的取值 */
+}
+
+/* 
+* 内容水平居中设计，x 表示水平方向
+* 可以使用 width 或 max-width
+* width 为固定宽度
+* max-width 在大于该宽度时为固定的宽度，当小于该宽度时则为流体宽度
+*/
+.ml-x-center {
+  max-width: var(--ml-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+* 最小宽度
+* 如果需要实现最小宽度，可以在 ml-x-content 父级元素上加上该 class
+*/
+.ml-min-width {
+  min-width: var(--ml-min-width);
+}
+          </pre>
+          <h3 class="guide-tt">注意点：</h3>
+
+          <p class="des">
+            如果不考虑响应式，则可以直接使用 `width` 固定宽度。如果考虑，则使用
+            `max-width` 为佳。
+          </p>
+
+          <p class="des">
+            如果使用
+            `width`，则还需要注意给背景层设置一个最小宽度，不然会导致小于该宽度时，水平滚动会出现背景层断裂现象。
+          </p>
+
+          <p class="des">
+            如果使用 `max-width`，最好还得搭配一个 `min-width`
+            来限制最小宽度。这个最小宽度的设置既可以设置在背景层，也可以设置在内容层上。
+          </p>
+        </div>
+      </main>
+      <footer class="footer bg-color-black">
+        <div class="ml-x-center p10">
+          <div class="text-placeholder" style="width: 80%"></div>
+          <div class="text-placeholder" style="width: 70%"></div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

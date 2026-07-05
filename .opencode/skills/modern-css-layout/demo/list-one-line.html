@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>单行列表项响应式布局</title>
+    <style></style>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      :root {
+      }
+      .ml-flex-list,
+      .ml-fixed-flex-list {
+        display: flex;
+      }
+      .ml-flex-list .ml-flex-item {
+        flex: 1;
+      }
+      .ml-flex-item {
+        height: 100px;
+        background: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .ml-flex-item:nth-of-type(2) {
+        opacity: 0.8;
+      }
+      .ml-flex-item:nth-of-type(3) {
+        opacity: 0.6;
+      }
+      .ml-flex-item:nth-of-type(4) {
+        opacity: 0.4;
+      }
+      .ml-flex-item:nth-of-type(5) {
+        opacity: 0.2;
+      }
+      .ml-fixed-flex-list {
+        justify-content: space-between;
+      }
+      .ml-fixed-flex-list .ml-flex-item {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="ml-sticky-header bg-color-black">
+        <div class="ml-x-center justify-content p10">
+          <div class="logo-placeholder"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="ml-x-center p10">
+          <h1 class="page-tt">单行列表项响应式布局</h1>
+          <p class="des">
+            使用 flex 布局，要点： flex 剩余空间分配的使用；水平分布的使用
+          </p>
+          <h3 class="guide-tt">1、列表项等分</h3>
+          <p class="des">
+            直接设置列表项 <code>flex: 1;</code>， 即可实现等分。Demo 如下：
+          </p>
+          <div class="ml-flex-list">
+            <div class="ml-flex-item">1</div>
+            <div class="ml-flex-item">2</div>
+            <div class="ml-flex-item">3</div>
+            <div class="ml-flex-item">4</div>
+            <div class="ml-flex-item">5</div>
+          </div>
+
+          <p class="des">CSS 代码示意如下：</p>
+
+          <pre>
+.ml-flex-list {
+  display: flex;
+}
+.ml-flex-item {
+  flex: 1; /* 等分 */
+}
+          </pre>
+
+          <h3 class="guide-tt">2、列表项宽度固定</h3>
+          <p class="des">列表项固定宽度，剩余容器宽度均分给间距。Demo 如下：</p>
+          <div class="ml-fixed-flex-list">
+            <div class="ml-flex-item">1</div>
+            <div class="ml-flex-item">2</div>
+            <div class="ml-flex-item">3</div>
+            <div class="ml-flex-item">4</div>
+            <div class="ml-flex-item">5</div>
+          </div>
+          <p class="des">CSS 代码示意如下：</p>
+
+          <pre>
+.ml-fixed-flex-list {
+  display: flex;
+  justify-content: space-between;
+}
+.ml-fixed-flex-list .ml-flex-item {
+  width: 100px;
+}
+          </pre>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
